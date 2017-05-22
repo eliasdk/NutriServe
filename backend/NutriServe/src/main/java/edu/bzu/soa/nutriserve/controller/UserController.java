@@ -28,7 +28,7 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	@ApiOperation(value = "Get user with user id = id from the system",response = User.class)
-	public User getPieWithId(@PathVariable Long id) {
+	public User getUserWithId(@PathVariable Long id) {
 		System.out.println("I am here ........");
 		User user = new User();
 		user.setId(1234567);

@@ -7,6 +7,22 @@ public class Gym {
 	String location;
 	String description;
 	
+	String nextGymApi;
+	public String getNextGymApi() {
+		return nextGymApi;
+	}
+	public void setNextGymApi(String nextGymApi) {
+		this.nextGymApi = nextGymApi;
+	}
+	public String getPreviousGymApi() {
+		return previousGymApi;
+	}
+	public void setPreviousGymApi(String previousGymApi) {
+		this.previousGymApi = previousGymApi;
+	}
+	String previousGymApi;
+	
+	
 	public int getId() {
 		return id;
 	}

@@ -29,15 +29,19 @@ public class PlanController {
 		 gym1.setId(5);
 		 gym1.setLocation("31.9146700, 35.206752 ");
 		 gym1.setName("Gym el abtal");
+		 gym1.setPreviousGymApi("https://bzu-nutriserve.appspot.com/gym/1");
+		 gym1.setNextGymApi("https://bzu-nutriserve.appspot.com/gym/3");
 		 
 		 gym2.setAddress("Rammalah, Massyon, Naji ali street 26");
 		 gym2.setDescription("Most classy Gym in the country ");
 		 gym2.setId(44);
 		 gym2.setLocation("33.8876700, 34.234752 ");
 		 gym2.setName("Super Gym");
+		 gym2.setPreviousGymApi("https://bzu-nutriserve.appspot.com/gym/1");
+		 gym2.setNextGymApi("https://bzu-nutriserve.appspot.com/gym/3");
 		 
 		 plan.addGym(gym1);
-		 plan.addGym(gym2);
+		 //plan.addGym(gym2);
 		 
 		 Recipe recipe1 = new Recipe();
 		 Recipe recipe2 = new Recipe();
@@ -49,7 +53,8 @@ public class PlanController {
 		 recipe1.setImageUrl("http://images.media-allrecipes.com/userphotos/560x315/2204020.jpg");
 		 recipe1.setName("Carrot Salad");
 		 recipe1.setRecipeurl("http://allrecipes.com/recipe/8854/broccoli-chicken-divan/?internalSource=popular&referringContentType=home%20page&clickId=cardslot%209");
-		 
+		 recipe1.setPreviousRecipeApi("https://bzu-nutriserve.appspot.com/recipe/1");
+		 recipe1.setNextRecipeApi("https://bzu-nutriserve.appspot.com/recipe/3");
 		 
 		 recipe2.setCuisine("Orental");
 		 recipe2.setCalories(2345);
@@ -61,7 +66,7 @@ public class PlanController {
 		 
 		 
 		 plan.addRecipe(recipe1);
-		 plan.addRecipe(recipe2);
+		// plan.addRecipe(recipe2);
 		 return plan;
 
 		 

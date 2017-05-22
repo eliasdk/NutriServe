@@ -9,6 +9,21 @@ public class Recipe {
 	String imageUrl ;
 	String recipeurl;
 	int calories ;
+	String nextRecipeApi;
+	
+	public String getNextRecipeApi() {
+		return nextRecipeApi;
+	}
+	public void setNextRecipeApi(String nextRecipeApi) {
+		this.nextRecipeApi = nextRecipeApi;
+	}
+	public String getPreviousRecipeApi() {
+		return previousRecipeApi;
+	}
+	public void setPreviousRecipeApi(String previousRecipeApi) {
+		this.previousRecipeApi = previousRecipeApi;
+	}
+	String previousRecipeApi;
 	
 	public int getId() {
 		return id;
