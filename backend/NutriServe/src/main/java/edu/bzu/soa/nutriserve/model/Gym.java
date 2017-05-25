@@ -5,8 +5,14 @@ public class Gym {
 	String name;
 	String address;
 	String location;
-	String description;
+	double rating;
 	
+	public double getRating() {
+		return rating;
+	}
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
 	String nextGymApi;
 	public String getNextGymApi() {
 		return nextGymApi;
@@ -47,10 +53,6 @@ public class Gym {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	 
+	 
 }

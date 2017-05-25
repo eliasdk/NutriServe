@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import edu.bzu.soa.nutriserve.service.GymService;
 import edu.bzu.soa.nutriserve.service.RecipeService;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -36,6 +37,18 @@ public class NutriServeApplication {
 			recipeService.getRecipes("broccoli");
 			System.out.println("+++++++++++++++++++++++++");
 			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		GymService gymService = new GymService();
+		try {
+			gymService.getGyms("");
+			 
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
