@@ -1,0 +1,45 @@
+﻿@model IEnumerable<IMS.Models.Shipment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Shipments</h2>
+
+<p>
+    @Html.ActionLink("Create New Shipment", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shipDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shipDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>*@
+        <td>
+            
+            @Html.ActionLink("Details", "Details", new {id = item.id}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.id})
+        </td>
+    </tr>
+}
+
+</table>

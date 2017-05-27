@@ -1,0 +1,68 @@
+﻿@model IEnumerable<IMS.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+}
+
+<h2>Customers</h2>
+
+<p>
+    @Html.ActionLink("Create New Customer", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.accountBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerBirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.currency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerBirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>*@
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
