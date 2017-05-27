@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import edu.bzu.soa.nutriserve.datastore.UserDao;
 import edu.bzu.soa.nutriserve.model.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,7 +52,8 @@ public class UserController {
 	
 		user.setId(id);
 		users.add(user);
-		
+		UserDao dao = new UserDao();
+		dao.addUser(user);
 		return user;
 	}
 	@RequestMapping(method = RequestMethod.PUT)

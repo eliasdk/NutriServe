@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.bzu.soa.nutriserve.model.Gym;
+import edu.bzu.soa.nutriserve.config.Constants;
 
 public class GymsData {
 	
@@ -11,6 +12,7 @@ public class GymsData {
 
 	public static void addIds() {
 		for (int i = 0; i < gyms.size(); i++) {
+			gyms.get(i).setImageUrl(Constants.gymsUrls[i%10]);
 			gyms.get(i).setId(i);
 			if (i == 0) {
 				gyms.get(i).setPreviousGymApi("");
