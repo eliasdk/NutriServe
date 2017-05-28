@@ -3,12 +3,15 @@ package edu.bzu.soa.nutriserve.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.bzu.soa.nutriserve.model.Recipe;
+import edu.bzu.soa.nutriserve.model.User;
 import edu.bzu.soa.nutriserve.service.RecipeService;
 import edu.bzu.soa.nutriserve.common.RecipesData;
 import io.swagger.annotations.Api;
@@ -45,12 +48,13 @@ public class RecipeController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	@ApiOperation(value = "Get Recipe with recipe id = id from the system", response = Recipe.class)
-	public Recipe getRecipeWithId(@PathVariable int id) {
+	public  ResponseEntity<Recipe>   getRecipeWithId(@PathVariable int id) {
 
 		if (id < RecipesData.recipes.size()  ) {
-			return RecipesData.recipes.get(id);
+			return new ResponseEntity<Recipe>(RecipesData.recipes.get(id), HttpStatus.OK);
 		}
-		return RecipesData.recipes.get(0);
+		 Recipe recipe = null;
+		  return new ResponseEntity<Recipe>(recipe,HttpStatus.NOT_FOUND);
 
 	}
 
