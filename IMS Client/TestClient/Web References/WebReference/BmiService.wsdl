@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://bzu.cloud:8080/BmiProj/services/" name="BmiService" targetNamespace="http://bzu.cloud:8080/BmiProj/services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://bzu.cloud:8080/BmiProj/services/">
+      <xsd:element name="bmi" type="xsd:float" />
+      <xsd:element name="parameters" type="tns:measures" />
+      <xsd:complexType name="measures">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Weight" type="xsd:float" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Tall" type="xsd:float" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CalculateBmiResponse">
+    <wsdl:part name="bmi" element="tns:bmi" />
+  </wsdl:message>
+  <wsdl:message name="CalculateBmiRequest">
+    <wsdl:part name="parameters" element="tns:parameters" />
+  </wsdl:message>
+  <wsdl:portType name="BmiService">
+    <wsdl:operation name="CalculateExBmi">
+      <wsdl:input message="tns:CalculateBmiRequest" />
+      <wsdl:output message="tns:CalculateBmiResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BmiServiceSOAP" type="tns:BmiService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CalculateExBmi">
+      <soap:operation soapAction="http://bzu.cloud:8080/BmiProj/services/NewOperation" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BmiService">
+    <wsdl:port name="BmiServiceSOAP" binding="tns:BmiServiceSOAP">
+      <soap:address location="http://bzu.cloud:8080/BmiProj" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

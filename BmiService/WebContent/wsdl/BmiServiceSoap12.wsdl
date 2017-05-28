@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://bzu.cloud:8080/BmiService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://bzu.cloud:8080/BmiService">
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://bzu.cloud:8080/BmiService">
+			<s:element name="getBmiReport">
+				<s:complexType>
+					<s:sequence>
+						<s:element maxOccurs="1" minOccurs="1" name="w" type="s:double"/>
+						<s:element maxOccurs="1" minOccurs="1" name="h" type="s:double"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="getBmiReportResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element maxOccurs="1" minOccurs="0" name="getBmiReportResult" type="tns:BmiReport"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="BmiReport">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="1" name="BmiValue" type="s:double"/>
+					<s:element maxOccurs="1" minOccurs="0" name="BmiDesc" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="getBmiValue">
+				<s:complexType>
+					<s:sequence>
+						<s:element maxOccurs="1" minOccurs="1" name="w" type="s:double"/>
+						<s:element maxOccurs="1" minOccurs="1" name="h" type="s:double"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="getBmiValueResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element maxOccurs="1" minOccurs="1" name="getBmiValueResult" type="s:double"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="getBmiDesc">
+				<s:complexType>
+					<s:sequence>
+						<s:element maxOccurs="1" minOccurs="1" name="bmi" type="s:double"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="getBmiDescResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element maxOccurs="1" minOccurs="0" name="getBmiDescResult" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="getBmiReportSoapIn">
+		<wsdl:part element="tns:getBmiReport" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getBmiReportSoapOut">
+		<wsdl:part element="tns:getBmiReportResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getBmiValueSoapIn">
+		<wsdl:part element="tns:getBmiValue" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getBmiValueSoapOut">
+		<wsdl:part element="tns:getBmiValueResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getBmiDescSoapIn">
+		<wsdl:part element="tns:getBmiDesc" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getBmiDescSoapOut">
+		<wsdl:part element="tns:getBmiDescResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="BmiServiceSoap">
+		<wsdl:operation name="getBmiReport">
+			<wsdl:input message="tns:getBmiReportSoapIn"/>
+			<wsdl:output message="tns:getBmiReportSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="getBmiValue">
+			<wsdl:input message="tns:getBmiValueSoapIn"/>
+			<wsdl:output message="tns:getBmiValueSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="getBmiDesc">
+			<wsdl:input message="tns:getBmiDescSoapIn"/>
+			<wsdl:output message="tns:getBmiDescSoapOut"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BmiServiceSoap" type="tns:BmiServiceSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getBmiReport">
+			<soap:operation soapAction="http://bzu.cloud:8080/BmiService/getBmiReport" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getBmiValue">
+			<soap:operation soapAction="http://bzu.cloud:8080/BmiService/getBmiValue" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getBmiDesc">
+			<soap:operation soapAction="http://bzu.cloud:8080/BmiService/getBmiDesc" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="BmiServiceSoap12" type="tns:BmiServiceSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getBmiReport">
+			<soap12:operation soapAction="http://bzu.cloud:8080/BmiService/getBmiReport" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getBmiValue">
+			<soap12:operation soapAction="http://bzu.cloud:8080/BmiService/getBmiValue" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getBmiDesc">
+			<soap12:operation soapAction="http://bzu.cloud:8080/BmiService/getBmiDesc" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="BmiService">
+		<wsdl:port binding="tns:BmiServiceSoap" name="BmiServiceSoap">
+			<soap:address location="http://localhost:8080/BmiService/services/BmiServiceSoap"/>
+		</wsdl:port>
+		<wsdl:port binding="tns:BmiServiceSoap12" name="BmiServiceSoap12">
+			<soap12:address location="http://bzu.cloud:8080/BmiService/webservices/bmiservice.asmx"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
