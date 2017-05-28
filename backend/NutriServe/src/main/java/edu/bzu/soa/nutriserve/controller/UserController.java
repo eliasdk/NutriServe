@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,18 +32,16 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	@ApiOperation(value = "Get user with user id = id from the system",response = User.class)
-	public User getUserWithId(@PathVariable Long id) {
-		System.out.println("I am here ........");
-		User user = new User();
-		user.setId(1234567);
-		user.setActivityStyle("Active");
-		user.setBirthDate(new Date());
-		user.setEmail("Eliasdkh@gmail.com");
-		user.setGender("M");
-		user.setHeight(180);
-		user.setWeight(95);
-		user.setName("Elias Khalil");
-		return user;
+	public  ResponseEntity<User>  getUserWithId(@PathVariable Long id) {
+		
+	  for (User  user : users){
+		  if ( user.getId() == id) {
+			  return new ResponseEntity<User>(user, HttpStatus.OK);
+		  }
+	  }
+	  User user = null;
+	  return new ResponseEntity<User>(user,HttpStatus.NOT_FOUND);
+	 
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -52,8 +52,8 @@ public class UserController {
 	
 		user.setId(id);
 		users.add(user);
-		UserDao dao = new UserDao();
-		dao.addUser(user);
+		//UserDao dao = new UserDao();
+		//dao.addUser(user);
 		return user;
 	}
 	@RequestMapping(method = RequestMethod.PUT)

@@ -6,6 +6,8 @@ public class Bmi {
 	float length;
 	float bmi;
 
+	
+
 	public Bmi(float weight2, float length2) {
 		this.weight = weight2;
 		this.length = length2;
@@ -32,6 +34,9 @@ public class Bmi {
 
 	public float getBmi() {
 		return bmi;
+	}
+	public void setBmi(float bmi) {
+		this.bmi = bmi;
 	}
 
 }
