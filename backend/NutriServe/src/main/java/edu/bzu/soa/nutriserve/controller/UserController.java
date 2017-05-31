@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.bzu.soa.nutriserve.datastore.TaskList;
 import edu.bzu.soa.nutriserve.datastore.UserDao;
 import edu.bzu.soa.nutriserve.model.User;
 import io.swagger.annotations.Api;
@@ -27,8 +28,13 @@ public class UserController {
 	 @ApiOperation(value = "Get All Users in the system",response = List.class)
 	@RequestMapping(method = RequestMethod.GET)
 	public List<User> getAllUsers() {
+		 
+		 TaskList tasks = new TaskList();
+		 tasks.addTask("My First Task");
+		 
 		return  users;
 	}
+	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	@ApiOperation(value = "Get user with user id = id from the system",response = User.class)
