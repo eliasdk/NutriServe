@@ -24,13 +24,11 @@ import io.swagger.annotations.ApiOperation;
 @Api(value="NutriServe User", description="User of NutriServe online service")
 public class UserController {
 
-	List<User> users = new ArrayList<User>();
+	static List<User> users = new ArrayList<User>();
 	 @ApiOperation(value = "Get All Users in the system",response = List.class)
 	@RequestMapping(method = RequestMethod.GET)
 	public List<User> getAllUsers() {
 		 
-		 TaskList tasks = new TaskList();
-		 tasks.addTask("My First Task");
 		 
 		return  users;
 	}
@@ -58,8 +56,8 @@ public class UserController {
 	
 		user.setId(id);
 		users.add(user);
-		//UserDao dao = new UserDao();
-		//dao.addUser(user);
+		 UserDao userDao = new UserDao();
+		 userDao.addUser(user);
 		return user;
 	}
 	@RequestMapping(method = RequestMethod.PUT)
