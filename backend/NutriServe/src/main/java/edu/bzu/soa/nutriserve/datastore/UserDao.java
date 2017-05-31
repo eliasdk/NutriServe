@@ -31,6 +31,7 @@ import com.google.cloud.datastore.Transaction;
 import edu.bzu.soa.nutriserve.model.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class UserDao {
             .set("gender", newUser.getGender())
             .set("activityStyle", newUser.getActivityStyle())
             .set("email", newUser.getEmail())
+            .set("userName", newUser.getUserName())
         .build();
     datastore.put(user);
     
@@ -100,16 +102,37 @@ public class UserDao {
   }
   // [END update_entity]
 
+  
+
+ 
   // [START retrieve_entities]
   /**
    * Returns a list of all task entities in ascending order of creation time.
    *
    * @throws DatastoreException if the query fails
    */
-  public Iterator<Entity> listTasks() {
+  public List<User> listUsers() {
+	  
+	  List<User> users = new ArrayList<User>();
+	  
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("Task").setOrderBy(OrderBy.asc("created")).build();
-    return datastore.run(query);
+        Query.newEntityQueryBuilder().setKind("User").setOrderBy(OrderBy.asc("created")).build();
+    Iterator<Entity> results =  datastore.run(query);
+    while (results.hasNext()) {
+        Entity task = results.next();
+        User user = new User();
+        user.setActivityStyle(task.getString("activityStyle"));
+        user.setBirthDate(new Date(task.getString("birthDate")));
+        user.setEmail(task.getString("email"));
+        user.setGender(task.getString("gender"));
+        user.setHeight((int) task.getLong("height"));
+        user.setWeight((int) task.getLong("weight"));
+        user.setId(task.getKey().getId());
+        user.setName(task.getString("name"));
+        user.setUserName(task.getString("userName"));
+    }
+    return users;
+    
   }
   // [END retrieve_entities]
 
@@ -183,13 +206,13 @@ public class UserDao {
         break;
       case "list":
         assertArgsLength(args, 1);
-        List<String> tasks = formatTasks(listTasks());
-        System.out.printf("found %d tasks:%n", tasks.size());
-        System.out.println("task ID : description");
-        System.out.println("---------------------");
-        for (String taskString : tasks) {
-          System.out.println(taskString);
-        }
+      //  List<String> tasks = formatTasks(listTasks());
+//        System.out.printf("found %d tasks:%n", tasks.size());
+//        System.out.println("task ID : description");
+//        System.out.println("---------------------");
+//        for (String taskString : tasks) {
+//          System.out.println(taskString);
+//        }
         break;
       case "delete":
         assertArgsLength(args, 2);

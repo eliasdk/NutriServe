@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.cloud.datastore.Key;
+
 import edu.bzu.soa.nutriserve.datastore.TaskList;
 import edu.bzu.soa.nutriserve.datastore.UserDao;
 import edu.bzu.soa.nutriserve.model.User;
@@ -29,15 +31,18 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET)
 	public List<User> getAllUsers() {
 		 
-		 
-		return  users;
+		 UserDao userDao = new UserDao();
+		 return userDao.listUsers();
 	}
 	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	@ApiOperation(value = "Get user with user id = id from the system",response = User.class)
 	public  ResponseEntity<User>  getUserWithId(@PathVariable Long id) {
-		
+		 UserDao userDao = new UserDao();
+		 users =  userDao.listUsers();
+		 
+		 
 	  for (User  user : users){
 		  if ( user.getId() == id) {
 			  return new ResponseEntity<User>(user, HttpStatus.OK);
@@ -57,7 +62,8 @@ public class UserController {
 		user.setId(id);
 		users.add(user);
 		 UserDao userDao = new UserDao();
-		 userDao.addUser(user);
+		 Key key = userDao.addUser(user);
+		 user.setId(key.getId());
 		return user;
 	}
 	@RequestMapping(method = RequestMethod.PUT)
