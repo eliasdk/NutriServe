@@ -61,7 +61,7 @@ public class UserDao {
     Key key = datastore.allocateId(keyFactory.newKey());
     Entity user = Entity.newBuilder(key)
     		.set("name", newUser.getName())
-            .set("birthDate", newUser.getBirthDate().toString())
+            .set("birthDate", newUser.getBirthDate().getTime())
             .set("weight", newUser.getWeight())
             .set("height", newUser.getHeight())
             .set("gender", newUser.getGender())
@@ -116,13 +116,13 @@ public class UserDao {
 	  List<User> users = new ArrayList<User>();
 	  
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("User").setOrderBy(OrderBy.asc("created")).build();
+        Query.newEntityQueryBuilder().setKind("User").build();
     Iterator<Entity> results =  datastore.run(query);
     while (results.hasNext()) {
         Entity task = results.next();
         User user = new User();
         user.setActivityStyle(task.getString("activityStyle"));
-        user.setBirthDate(new Date(task.getString("birthDate")));
+        user.setBirthDate(new Date(task.getLong("birthDate")));
         user.setEmail(task.getString("email"));
         user.setGender(task.getString("gender"));
         user.setHeight((int) task.getLong("height"));
@@ -130,6 +130,7 @@ public class UserDao {
         user.setId(task.getKey().getId());
         user.setName(task.getString("name"));
         user.setUserName(task.getString("userName"));
+        users.add(user);
     }
     return users;
     

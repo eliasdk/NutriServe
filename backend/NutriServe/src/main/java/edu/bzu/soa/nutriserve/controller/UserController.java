@@ -26,13 +26,14 @@ import io.swagger.annotations.ApiOperation;
 @Api(value="NutriServe User", description="User of NutriServe online service")
 public class UserController {
 
-	static List<User> users = new ArrayList<User>();
+	//static List<User> users = new ArrayList<User>();
 	 @ApiOperation(value = "Get All Users in the system",response = List.class)
 	@RequestMapping(method = RequestMethod.GET)
-	public List<User> getAllUsers() {
+	public ResponseEntity<List<User>> getAllUsers() {
 		 
 		 UserDao userDao = new UserDao();
-		 return userDao.listUsers();
+		 List<User>  users= userDao.listUsers();
+		  return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 	
 
@@ -40,7 +41,7 @@ public class UserController {
 	@ApiOperation(value = "Get user with user id = id from the system",response = User.class)
 	public  ResponseEntity<User>  getUserWithId(@PathVariable Long id) {
 		 UserDao userDao = new UserDao();
-		 users =  userDao.listUsers();
+		 List<User>  users =  userDao.listUsers();
 		 
 		 
 	  for (User  user : users){
@@ -60,7 +61,7 @@ public class UserController {
 		int id = r.nextInt(100);
 	
 		user.setId(id);
-		users.add(user);
+		//users.add(user);
 		 UserDao userDao = new UserDao();
 		 Key key = userDao.addUser(user);
 		 user.setId(key.getId());
@@ -73,7 +74,7 @@ public class UserController {
 		int id = r.nextInt(100);
 	
 		user.setId(id);
-		users.add(user);
+		//users.add(user);
 		
 		return user;
 	}
