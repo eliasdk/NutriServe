@@ -19,10 +19,10 @@ import edu.bzu.soa.nutriserve.model.Recipe;
 public class RecipeService {
 
 	@Value("${EDAMAM_APP_KEY}")
-	private String EDammamAppKey ="9d0d687ceb40d43d5687a55247f94165" ;
+	private String EDammamAppKey ="c6411b9a2bebbf3c6f9542b212e12124" ;
 	
 	@Value("${EDAMAM_APP_ID}")
-	private String EDammamAppId ="6c80cc07";
+	private String EDammamAppId ="2a1bb8a4";
 	
 	public String getEDammamAppKey() {
 		return EDammamAppKey ;
